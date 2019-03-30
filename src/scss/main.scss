@@ -1,0 +1,268 @@
+$light-blue: #3cb5e0;
+$light-gray: #8a8a8a;
+$dark-gray: #494949;
+$lightest-gray: #f8f8f8;
+$color-green: #1abe28;
+$orange: #ee592c;
+@import url("https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700i|Raleway:500,600,700,800");
+
+@mixin easeOut {
+  transition: all 0.3s ease-out;
+}
+
+@mixin button($color) {
+  background: $color;
+  cursor: pointer;
+  @include easeOut;
+
+  &:hover,
+  &:active {
+    background: darken($color, 5);
+  }
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+@mixin border($color) {
+  border: 1.3px solid lighten($color, 32);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a,
+button,
+input {
+  border: none;
+  text-decoration: none;
+  outline: none;
+  font-size: 1rem;
+  font-family: "Merriweather Sans", sans-serif;
+  color: $light-gray;
+  letter-spacing: 0.8px;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: $light-gray;
+  font-family: "Merriweather Sans", sans-serif;
+  letter-spacing: 0.3px;
+  font-size: 1rem;
+  line-height: 1.7;
+  background: black;
+}
+
+.text-number {
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.box-wrapper {
+  padding: 0.2rem 1.9rem;
+  background: white;
+  max-width: 450px;
+}
+
+header {
+  position: relative;
+  margin: 1.5rem 0 0.9rem 0;
+  height: 4rem;
+}
+.hover-message {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  text-align: center;
+  font-size: 1.1rem;
+  background: darken($dark-gray, 3);
+  color: darken($lightest-gray, 9);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:before {
+    content: "";
+    width: 1.2rem;
+    height: 1.2rem;
+    right: 3.2rem;
+    bottom: 0;
+    position: absolute;
+    background: darken($dark-gray, 3);
+    transform: rotate(35deg) translate(50%, -15%) skewy(15deg);
+  }
+  .text-number,
+  & ::first-letter {
+    color: white;
+    font-weight: 600;
+  }
+}
+
+.progress-bar {
+  cursor: pointer;
+  height: 1rem;
+  background: lighten($lightest-gray, 2);
+  border: 1.5px solid lighten($light-gray, 32);
+  border-bottom: none;
+  box-shadow: 0 3px 1px rgba($light-gray, 0.07) inset;
+}
+.progress {
+  background: $orange;
+  width: 0;
+  height: 100%;
+}
+
+.content-wrapper {
+  padding: 0 1.7rem;
+  box-shadow: 0 2.5px 1px rgba($light-gray, 0.1);
+  @include border($light-gray);
+}
+.text-highlight {
+  color: $orange;
+  font-weight: 600;
+}
+.donate {
+  display: flex;
+  justify-content: space-between;
+
+  input,
+  button {
+    padding: 1.1rem 0.7rem;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 0.9px;
+  }
+  input {
+    font-family: Helvetica, sans-serif;
+    font-size: 23px;
+    color: $dark-gray;
+    padding-left: 1.8rem;
+    width: 100%;
+    @include border($light-gray);
+  }
+  button {
+    color: white;
+    font-size: 20px;
+    max-width: 46.5%;
+    flex: 1;
+    @include button($color-green);
+  }
+  .dollar {
+    position: relative;
+    display: inline-block;
+    flex: 1;
+    max-width: 46.5%;
+  }
+  .dollar::before {
+    content: "$";
+    position: absolute;
+    top: 50%;
+    left: 0.7rem;
+    transform: translateY(-50%);
+    font-size: 23px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+  }
+}
+
+.details {
+  display: inline-block;
+  color: $light-blue;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.6rem 0 1.4rem 0;
+  letter-spacing: 0.3px;
+  @include easeOut();
+  &:hover {
+    color: darken($light-blue, 10);
+  }
+
+  span {
+    font-weight: 700;
+  }
+}
+
+.options {
+  padding: 0;
+  display: flex;
+
+  .button-option {
+    padding: 0.9rem 1rem;
+    margin: 1.2rem 0;
+    flex: 1;
+    color: darken($light-gray, 7);
+    @include button($lightest-gray);
+    @include border($light-gray);
+    border-radius: 5px;
+    box-shadow: 0 1.5px 1px rgba($light-gray, 0.2);
+    font-weight: bold;
+    &:nth-of-type(1) {
+      margin-right: 1.4rem;
+    }
+  }
+}
+
+.hide {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 449px) {
+  main {
+    display: block;
+  }
+  .box-wrapper {
+    max-width: 100vw;
+    padding: 0.2rem 1.5rem;
+  }
+  .options {
+    flex-direction: column;
+    .button-option {
+      width: 100%;
+      &:nth-of-type(2) {
+        margin-top: 0;
+      }
+    }
+  }
+  .donate {
+    justify-content: flex-start;
+    align-items: flex-start;
+    #input-donate,
+    #button-donate,
+    .dollar:before {
+      font-size: 1rem;
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+      max-width: unset;
+    }
+    .dollar {
+      max-width: 75px;
+      margin-right: 0.3rem;
+    }
+    #input-donate {
+      padding-left: 1.4rem;
+    }
+    #button-donate {
+      max-width: 120px;
+      margin-bottom: 1rem;
+    }
+
+    .dollar:before {
+      font-size: 1rem;
+    }
+  }
+}
