@@ -15,8 +15,8 @@ window.onload = function() {
     hoverMessage.classList.add("hide");
   };
 
-  progBar.onmouseover = showMessage;
-  progBar.onmouseout = hideMessage;
+  // progBar.onmouseover = showMessage;
+  // progBar.onmouseout = hideMessage;
 
   function myFunction(x) {
     if (x.matches) {
